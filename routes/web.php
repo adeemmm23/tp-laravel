@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,5 @@ use App\Http\Controllers\FilmController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::post('/films/edit', [FilmController::class, 'update'])->name('films.update');
-Route::get('/films/store', [FilmController::class, 'create'])->name('films.create');
-Route::post('/films/store', [FilmController::class, 'store'])->name('films.store');
-Route::get('/films/delete/{id}', [FilmController::class, 'destroy'])->name('films.delete');
-Route::get('/films/edit/{id}', [FilmController::class, 'edit'])->name('films.edit');
-Route::get('/films', [FilmController::class, 'index'])->name('films.index');
-Route::get('/films/{id}', [FilmController::class, 'show'])->name('films.show');
+Route::resource('films', FilmController::class);
+Route::get('/', [Controller::class, 'index'])->name('index');
