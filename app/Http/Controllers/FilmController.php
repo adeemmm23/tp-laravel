@@ -21,7 +21,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        return view('store');
     }
 
     /**
@@ -29,7 +29,13 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $film = new Film();
+        $film->titre = $request->input('titre');
+        $film->anneesortie = $request->input('anneesortie');
+        $film->description = $request->input('description');
+        $film->duree = $request->input('duree');
+        $film->save();
+        return redirect()->route('films.index')->with('message', "Le film $film->titre a été ajouté avec succès !");
     }
 
     /**
@@ -46,7 +52,8 @@ class FilmController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $film = Film::find($id);
+        return view('edit', compact('film'));
     }
 
     /**
@@ -54,7 +61,13 @@ class FilmController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $film = Film::find($id);
+        $film->titre = $request->input('titre');
+        $film->anneesortie = $request->input('anneesortie');
+        $film->description = $request->input('description');
+        $film->duree = $request->input('duree');
+        $film->save();
+        return redirect()->route('films.index');
     }
 
     /**
@@ -64,8 +77,6 @@ class FilmController extends Controller
     {
         $film = Film::find($id);
         $film->delete();
-        return redirect()->route('films.index');
+        return redirect()->route('films.index')->with('message', "Le film $film->titre a été supprimé avec succès !");
     }
-
-
 }

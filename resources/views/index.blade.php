@@ -1,6 +1,11 @@
 @extends('template')
 @section('titre', 'Bienvenue !')
 @section('contenu')
+@if(session('message'))
+<div class="alert alert-success">
+    {{ session('message') }}
+</div>
+@endif
 <h1 style="margin-top: 50px">Films</h1>
 <a href="{{route('films.create')}}" class="btn btn-success" style="margin-top: 50px; margin-bottom: 50px">Ajouter un
     film</a>
