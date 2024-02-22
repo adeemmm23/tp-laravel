@@ -4,7 +4,7 @@
 <div class="card" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title">Ajouter</h5>
-        <form action="{{ route('films.update') }}" method="post">
+        <form action="{{ route('films.update', $film->id) }}" method="put">
             @csrf
             <div class="form-group">
                 <label for="titre">Titre</label>
@@ -25,7 +25,7 @@
                 <input value="{{ $film->duree }}" type="number" class="form-control" id="duree" name="duree" required>
             </div>
             <br />
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
 </div>

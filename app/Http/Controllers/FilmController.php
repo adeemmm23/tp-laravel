@@ -21,7 +21,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('store');
+        return view('create');
     }
 
     /**
