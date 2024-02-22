@@ -59,15 +59,16 @@ class FilmController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
+        $id = $request->input('id');
         $film = Film::find($id);
         $film->titre = $request->input('titre');
         $film->anneesortie = $request->input('anneesortie');
         $film->description = $request->input('description');
         $film->duree = $request->input('duree');
         $film->save();
-        return redirect()->route('films.index');
+        return redirect()->route('films.index')->with('message', "Le film $film->titre a été modifié avec succès !");
     }
 
     /**
