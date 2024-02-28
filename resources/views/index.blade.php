@@ -8,8 +8,11 @@
 </div>
 @endif -->
 
-<form class="d-flex w-100" style="margin-top: 50px; margin-bottom: 50px;" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+<form action="{{ route('films.search') }}" class="d-flex w-100" style="margin-top: 50px; margin-bottom: 50px;" role="search" method="GET">
+    @csrf
+    @method('GET')
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{
+    Route::currentRouteName() == 'films.search' ? request()->input('search') : '' }}">
     <button class="btn btn-outline-success me-2" type="button">Search</button>
     <a href="{{route('films.create')}}" class="btn btn-success text-nowrap">Ajouter un
         film</a>

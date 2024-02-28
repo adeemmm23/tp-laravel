@@ -14,6 +14,13 @@ class FilmController extends Controller
         return view('index', compact('films'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $films = Film::where('titre', 'like', "%$search%")->get();
+        return view('index', compact('films'));
+    }
+
     public function create()
     {
         return view('create');
