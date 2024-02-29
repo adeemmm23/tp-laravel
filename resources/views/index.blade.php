@@ -53,9 +53,7 @@
 </table>
 
 @if (Route::currentRouteName() != 'films.search')
-<div>
     {{ $films->links() }}
-</div>
 @endif
 
 @endsection
