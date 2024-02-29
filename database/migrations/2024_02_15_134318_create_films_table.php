@@ -10,6 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
@@ -17,6 +18,10 @@ return new class extends Migration {
             $table->text('description');
             $table->integer('duree');
             $table->timestamps();
+            $table->foreignId('categorie_id')
+                ->constrained('categories')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
         });
     }
 

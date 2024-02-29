@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Film extends Model
+class Categorie extends Model
 {
-    public function categorie()
+    public function films()
     {
-        return $this->belongsTo(Categorie::class);
+        return $this->hasMany(Film::class);
     }
     use HasFactory;
 }

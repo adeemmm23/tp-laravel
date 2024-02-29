@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Categorie;
 
 class FilmController extends Controller
 {
@@ -11,7 +12,8 @@ class FilmController extends Controller
     public function index()
     {
         $films = Film::paginate(5);
-        return view('index', compact('films'));
+        $categories = Categorie::all();
+        return view('index', compact('films'), compact('categories'));
     }
 
     public function search(Request $request)
@@ -21,15 +23,25 @@ class FilmController extends Controller
         return view('index', compact('films'));
     }
 
+    public function categorie(string $nom)
+    {
+        $categories = Categorie::all();
+        $cate = Categorie::where('nom', $nom)->first();
+        $films = $cate->films;
+        return view('index', compact('films'), compact('categories'));
+    }
+
     public function create()
     {
-        return view('create');
+        $categories = Categorie::all();
+        return view('create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $film = new Film();
         $film->titre = $request->input('titre');
+        $film->categorie_id = $request->input('categorie');
         $film->anneesortie = $request->input('anneesortie');
         $film->description = $request->input('description');
         $film->duree = $request->input('duree');
