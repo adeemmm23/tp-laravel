@@ -17,6 +17,14 @@
                     name="anneesortie" required>
             </div>
             <div class="form-group">
+                <label for="categorie">Catégorie</label>
+                <select class="form-control" id="categorie" name="categorie" required>
+                    @foreach($categories as $categorie)
+                    <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" id="description" name="description" rows="3"
                     required>{{ $film->description }}</textarea>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="bg-dark text-white d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         <div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center">
             @yield('contenu')
         </div>

@@ -8,7 +8,9 @@
 </div>
 @endif -->
 
-<div class="d-flex w-100" style="margin-top: 50px; margin-bottom: 50px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" class="img-fluid" alt="Responsive image" style="width: 200px;margin-top: 100px">
+
+<div class="d-flex w-100" style="margin-top: 50px;">
     <form class="d-flex w-100" action="{{ route('films.search') }}"  role="search" method="GET">
         @csrf
         @method('GET')
@@ -18,13 +20,12 @@
     <a href="{{route('films.create')}}" class="btn btn-success text-nowrap me-2">Ajouter un film</a>
     <select onchange="window.location.href = this.value" class="form-control" id="categorie" name="categorie" required style="width: 200px;">
         <option 
-         selected="{{Route::currentRouteName() == 'films.index' ? 'selected' : ''}}" 
+         selected="selected"
          value="{{route('films.index')}}">
          Toutes les catégories
         </option>
         @foreach($categories as $categorie)
         <option 
-            selected="{{Route::currentRouteName() == 'films.categorie' && request()->route('nom') == $categorie->nom ? 'selected' : ''}}"
             value="{{route('films.categorie', $categorie->nom)}}">
             {{ $categorie->nom }}
         </option>
@@ -34,8 +35,7 @@
 
 </div>
 
-<h1 style=" margin-top: 50px">Films</h1>
-<table class="table table-dark" style="width: 80%; margin-top: 100px;margin-bottom: 100px">
+<table class="table" style="width: 80%; margin-top: 100px;margin-bottom: 100px">
     <thead>
         <tr>
             <th scope="col">Id</th>

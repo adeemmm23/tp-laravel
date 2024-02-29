@@ -19,8 +19,9 @@ class FilmController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
+        $categories = Categorie::all();
         $films = Film::where('titre', 'like', "%$search%")->get();
-        return view('index', compact('films'));
+        return view('index', compact('films'), compact('categories'));
     }
 
     public function categorie(string $nom)
@@ -58,7 +59,8 @@ class FilmController extends Controller
     public function edit(string $id)
     {
         $film = Film::find($id);
-        return view('edit', compact('film'));
+        $categories = Categorie::all();
+        return view('edit', compact('film'), compact('categories'));
     }
 
     public function update(Request $request, string $id)
