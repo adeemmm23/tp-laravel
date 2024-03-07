@@ -5,17 +5,31 @@ namespace App\Http\Controllers\Api;
 use App\Models\Film;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\Film as FilmResource;
 
 class FilmController extends Controller
 {
     public function index()
     {
         $films = Film::all();
-        return response()->json($films);
+        return FilmResource::collection($films);
     }
 
     public function store(Request $request)
     {
+        $requiredFields = ['titre', 'categorie', 'anneesortie', 'description', 'duree'];
+
+        foreach ($requiredFields as $field) {
+            if (!$request->has($field)) {
+                return response()->json(
+                    [
+                        'message' => "Le champ $field est obligatoire !"
+                    ],
+                    400
+                );
+            }
+        }
+
         $film = new Film();
         $film->titre = $request->input('titre');
         $film->categorie_id = $request->input('categorie');
@@ -34,7 +48,7 @@ class FilmController extends Controller
     public function show(string $id)
     {
         $film = Film::find($id);
-        return response()->json($film);
+        return new FilmResource($film);
     }
 
     public function update(Request $request, string $id)
