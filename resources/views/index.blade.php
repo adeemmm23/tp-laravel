@@ -1,5 +1,5 @@
 @extends('template')
-@section('titre', 'Bienvenue !')
+@section('titre', 'Netflix')
 @section('contenu')
 
 <!-- @if(session('message'))
