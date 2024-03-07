@@ -8,18 +8,12 @@ use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $films = Film::all();
         return response()->json($films);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $film = new Film();
@@ -37,18 +31,12 @@ class FilmController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $film = Film::find($id);
         return response()->json($film);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $film = Film::find($id);
@@ -66,9 +54,6 @@ class FilmController extends Controller
         );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $film = Film::find($id);
