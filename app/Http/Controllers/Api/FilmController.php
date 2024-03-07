@@ -71,6 +71,13 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $film = Film::find($id);
+        $film->delete();
+        return response()->json(
+            [
+                'message' => "Le film a été supprimé avec succès !",
+                'film' => $film
+            ]
+        );
     }
 }
